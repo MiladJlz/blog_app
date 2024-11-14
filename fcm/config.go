@@ -1,4 +1,4 @@
-package fcm_notif
+package fcm
 
 import (
 	"context"

@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/MiladJlz/blog_app/db"
-	"github.com/MiladJlz/blog_app/fcm_notif"
+	"github.com/MiladJlz/blog_app/fcm"
 	"github.com/MiladJlz/blog_app/types"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -11,11 +11,11 @@ import (
 
 type PostHandler struct {
 	postStore db.PostStore
-	fcmClient *fcm_notif.FirebaseMessagingClient
+	fcmClient *fcm.FirebaseMessagingClient
 	userStore db.UserStore
 }
 
-func NewPostHandler(postStore db.PostStore, userStore db.UserStore, fcmClient *fcm_notif.FirebaseMessagingClient) *PostHandler {
+func NewPostHandler(postStore db.PostStore, userStore db.UserStore, fcmClient *fcm.FirebaseMessagingClient) *PostHandler {
 	return &PostHandler{
 		postStore: postStore,
 		fcmClient: fcmClient,

@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/MiladJlz/blog_app/api"
 	"github.com/MiladJlz/blog_app/db"
-	"github.com/MiladJlz/blog_app/fcm_notif"
+	"github.com/MiladJlz/blog_app/fcm"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/swagger"
 	"github.com/joho/godotenv"
@@ -37,7 +37,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	firebase, err := fcm_notif.NewFirebaseMessagingClient(ctx)
+	firebase, err := fcm.NewFirebaseMessagingClient(ctx)
 
 	var (
 		userStore = db.NewMongoUserStore(client)
