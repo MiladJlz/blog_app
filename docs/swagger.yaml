@@ -1,0 +1,409 @@
+basePath: /
+definitions:
+  types.CreatePostParams:
+    properties:
+      author:
+        example: 66db2c856699531daa9abc16
+        type: string
+      content:
+        example: This is example.
+        type: string
+      created_at:
+        type: string
+    type: object
+  types.CreateUserParams:
+    properties:
+      email:
+        type: string
+      fcmToken:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
+    type: object
+  types.PathParameter:
+    properties:
+      id:
+        example: 66db2c856699531daa9abc16
+        type: string
+    type: object
+  types.Post:
+    properties:
+      author:
+        example: 66db21cdb5d96466fa5f3c3c
+        type: string
+      content:
+        example: This is example.
+        type: string
+      created_at:
+        example: "2024-09-06T16:23:33.648Z"
+        type: string
+      id:
+        example: 66db2c856699531daa9abc16
+        type: string
+      updated_at:
+        example: "2024-09-06T16:23:33.648Z"
+        type: string
+    type: object
+  types.UpdatePostParams:
+    properties:
+      content:
+        example: This is example.
+        type: string
+    type: object
+  types.UpdateUserParams:
+    properties:
+      fcmToken:
+        type: string
+      firstName:
+        example: foo
+        type: string
+      lastName:
+        example: baz
+        type: string
+      password:
+        example: verysecurepassword
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: This is a sample swagger for Fiber
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Note App API
+  version: "1.0"
+paths:
+  /post:
+    post:
+      parameters:
+      - description: New Post
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreatePostParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/types.Post'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Inserting Post
+      tags:
+      - Posts
+  /post/{id}:
+    delete:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Deleting Post
+      tags:
+      - Posts
+    get:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.Post'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Getting Post
+      tags:
+      - Posts
+    put:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      - description: New content
+        in: body
+        name: content
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdatePostParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Updating Post
+      tags:
+      - Posts
+  /post/user/{id}:
+    get:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/types.Post'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Getting posts from given user id
+      tags:
+      - Posts
+  /posts:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/types.Post'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Getting Posts
+      tags:
+      - Posts
+  /user:
+    post:
+      parameters:
+      - description: New user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateUserParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: map
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Inserting user
+      tags:
+      - Users
+  /user/{id}:
+    delete:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Deleting User
+      tags:
+      - Users
+    get:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Getting user
+      tags:
+      - Users
+    put:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      - description: User
+        in: body
+        name: content
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateUserParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Updating user
+      tags:
+      - Users
+  /user/{id}/add:
+    put:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      - description: User
+        in: body
+        name: userID
+        required: true
+        schema:
+          $ref: '#/definitions/types.PathParameter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Adding Freiend
+      tags:
+      - Users
+  /user/{id}/remove:
+    put:
+      parameters:
+      - example: 66db2c856699531daa9abc16
+        in: path
+        name: id
+        type: string
+      - description: User
+        in: body
+        name: userID
+        required: true
+        schema:
+          $ref: '#/definitions/types.PathParameter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Removing Freiend
+      tags:
+      - Users
+  /users:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: map
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Getting users
+      tags:
+      - Users
+swagger: "2.0"
