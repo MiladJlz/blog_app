@@ -1,10 +1,10 @@
 package api
 
 import (
+	"github.com/MiladJlz/blog_app/db"
+	"github.com/MiladJlz/blog_app/types"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"note_app/db"
-	"note_app/types"
 )
 
 type UserHandler struct {

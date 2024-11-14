@@ -2,10 +2,10 @@ package db
 
 import (
 	"context"
+	"github.com/MiladJlz/blog_app/types"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"note_app/types"
 	"os"
 )
 

@@ -2,17 +2,16 @@ package main
 
 import (
 	"context"
+	"github.com/MiladJlz/blog_app/api"
+	"github.com/MiladJlz/blog_app/db"
+	"github.com/MiladJlz/blog_app/fcm_notif"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/swagger"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
-	"note_app/api"
-	"note_app/db"
-	_ "note_app/docs"
-	"note_app/fcm_notif"
-	_ "note_app/types"
+
 	"os"
 )
 
